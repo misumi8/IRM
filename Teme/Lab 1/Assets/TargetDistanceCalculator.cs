@@ -48,6 +48,8 @@ public class TargetDistanceCalculator : MonoBehaviour
         if(distance < 0.3f)
         {
             Debug.Log("Distance < 0.3m");
+            animator1.ResetTrigger("TrNotAttackCactus");
+            animator2.ResetTrigger("TrNotAttackMush");
             animator1.SetTrigger("TrAttackCactus");
             animator2.SetTrigger("TrAttackMush");
         }
@@ -56,6 +58,8 @@ public class TargetDistanceCalculator : MonoBehaviour
             Debug.Log("Distance > 0.3m");
             animator1.ResetTrigger("TrAttackCactus");
             animator2.ResetTrigger("TrAttackMush");
+            animator1.SetTrigger("TrNotAttackCactus");
+            animator2.SetTrigger("TrNotAttackMush");
         }
 
     }
