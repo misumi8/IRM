@@ -14,6 +14,7 @@ public class TargetDistanceCalculator : MonoBehaviour
         imageTarget1 = GameObject.Find("ImageTarget1");
         imageTarget2 = GameObject.Find("ImageTarget2");
 
+        // Stop if imageTargets not found
         if (imageTarget1 == null)
         {
             Debug.LogError("imageTarget1 not found");
@@ -24,6 +25,7 @@ public class TargetDistanceCalculator : MonoBehaviour
         }
 
         animator1 = imageTarget1.GetComponentInChildren<Animator>();
+        // Test whether the correct animator selected or not
         Debug.Log("ANIMATOR1 NAME: " + animator1.name);
         animator2 = imageTarget2.GetComponentInChildren<Animator>();
         Debug.Log("ANIMATOR2 NAME: " + animator2.name);
@@ -45,9 +47,11 @@ public class TargetDistanceCalculator : MonoBehaviour
 
         float distance = Vector3.Distance(pos1, pos2);
         Debug.Log("Distance between image targets: " + distance + " m.");
+
         if(distance < 0.3f)
         {
             Debug.Log("Distance < 0.3m");
+            // Turn off the idle triggers and on the attack triggers
             animator1.ResetTrigger("TrNotAttackCactus");
             animator2.ResetTrigger("TrNotAttackMush");
             animator1.SetTrigger("TrAttackCactus");
@@ -56,6 +60,7 @@ public class TargetDistanceCalculator : MonoBehaviour
         else
         {
             Debug.Log("Distance > 0.3m");
+            // Turn on the idle triggers and off the attack triggers
             animator1.ResetTrigger("TrAttackCactus");
             animator2.ResetTrigger("TrAttackMush");
             animator1.SetTrigger("TrNotAttackCactus");
